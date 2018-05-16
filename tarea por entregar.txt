@@ -1,0 +1,18 @@
+1
+2- aplicaciones pilas
+3-aplicaciones listas
+4-arbol sintactico--- tot=precio+10; que diga si esta bien o no
+5-mezcla directa, y natural
+6-libro- busqueda secuencial binaria,metodos de ordenacion dandole clic en las tablas
+
+
+reevas
+1----4 de junio---11 nivelacion
+2----4 de junio---11 nivelacion
+
+3---5 de junio--12 nivelacion
+4---6 de junio---12 nivelacion
+
+
+5---7 de junio--13 nivelacion
+6----8 de junio--13 nivelacion
