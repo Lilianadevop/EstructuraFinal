@@ -34,6 +34,7 @@ public class HashFrame extends javax.swing.JFrame {
         pBusqueda.setVisible(false);
         btnBuscar.setEnabled(false);
         
+        /*
         dtmB.addTableModelListener(new TableModelListener(){
             @Override
             public void tableChanged(TableModelEvent tme) {
@@ -54,6 +55,7 @@ public class HashFrame extends javax.swing.JFrame {
             
         
         });
+        */
         
         jcbB.setSelected(false);
     }
@@ -606,17 +608,7 @@ public class HashFrame extends javax.swing.JFrame {
                     
                 
                 */
-                
-                
-                /*
-                if (Integer.parseInt(A[hc].getNc()) > Integer.parseInt(txtNC.getText())) {
-                    A[hc - 1] = new Alumno(txtNC.getText(), txtNombre.getText(), Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtCalificacion.getText()));
-                } else if (Integer.parseInt(A[hc].getNc()) < Integer.parseInt(txtNC.getText())) {
-                    A[hc + 1] = new Alumno(txtNC.getText(), txtNombre.getText(), Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtCalificacion.getText()));
-                }
-                */
-
-            }else{
+           }else{
                 //B[hc]=new Alumno(txtNC.getText(),txtNombre.getText(),Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtCalificacion.getText()));
                 showMessageDialog(null,"Numero de control repetido.");
                 txtNC.requestFocus();

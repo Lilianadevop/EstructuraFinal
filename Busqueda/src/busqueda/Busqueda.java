@@ -35,7 +35,18 @@ public class Busqueda {
     
     //Hash
     private static int posHash(String nc){
-        return Integer.parseInt(nc)%10;
+        char[] chars=nc.toCharArray();
+        String t="";
+        int tt=0;
+        for(int i=0;i<chars.length;i++){
+            if((int)chars[i++]==0){
+                t=chars[i]+""+chars[i+1];
+            }else
+                t=chars[i]+"";
+            
+            tt+=Integer.parseInt(t);
+        }
+        return tt%11;
     }
     
     public static int hash(String nc){
