@@ -28,7 +28,7 @@ public class HashFrame extends javax.swing.JFrame {
         dtmB=(DefaultTableModel)tblB.getModel();
         dtmA=(DefaultTableModel)tblAlumnos2.getModel();
         
-        filas=Integer.parseInt(showInputDialog("Ingrese el tamaño de la tabla: "));
+        filas=11;//Integer.parseInt(showInputDialog("Ingrese el tamaño de la tabla: "));
         dtm.setRowCount(filas);
         dtmA.setRowCount(filas);
         pBusqueda.setVisible(false);
@@ -488,13 +488,12 @@ public class HashFrame extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // Eliminar
         
-        //dtm.removeRow(5);
-        //dtm.setRowCount(dtm.getRowCount()+1);
-        
         
         try{
-            if(!dtmB.getValueAt(0, 0).toString().equals(""))
+            if(!dtmB.getValueAt(0, 0).toString().equals("")){
                 eliminar(dtmB.getValueAt(0, 0).toString());
+                actualizar();
+            }
             else{
                 showMessageDialog(null,"Por favor ingrese el NC");
                 txtNombre.requestFocus();
@@ -517,15 +516,24 @@ public class HashFrame extends javax.swing.JFrame {
         // Buscar
         try{
             int hc=0;
+            String nc=dtmB.getValueAt(0, 0).toString();
             if(!dtmB.getValueAt(0, 0).toString().equals(""))
-                hc=Busqueda.hash(dtmB.getValueAt(0, 0).toString());
+                hc=Busqueda.hash(nc);
             else{
                 showMessageDialog(null,"Por favor ingrese el NC");
                 txtNombre.requestFocus();
             }
+            
+            if(A[hc].getNc()!=dtmB.getValueAt(0, 0)){
+                mostrarB(hc,nc);
+            }else
+                mostrarA(hc);
+            
+            /*
             dtm.setRowCount(0);
             dtm.setRowCount(dtm.getRowCount()+1);
             dtm.setValueAt(A[hc], 0, 0);
+            */
             
             limpiarBusq();
         }catch(NumberFormatException e){
@@ -533,9 +541,12 @@ public class HashFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // Actualizar
         dtm.setRowCount(filas);
+        tblAlumnos.setVisible(true);
+        tblAlumnos2.setVisible(true);
         actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -621,18 +632,37 @@ public class HashFrame extends javax.swing.JFrame {
         //mostrar(hc);
     }
     
-    private void mostrar(int nc){
-        dtm.setValueAt(A[nc].getNc(), nc, 0);
-        dtm.setValueAt(A[nc].getNombre(), nc, 1);
-        dtm.setValueAt(A[nc].getEdad(), nc, 2);
-        dtm.setValueAt(A[nc].getCalif(), nc, 3);
+    private void mostrarA(int nc){
+        tblAlumnos2.setVisible(false);
+        
+        dtm.setRowCount(0);
+        dtm.setRowCount(dtm.getRowCount()+1);
+        
+        dtm.setValueAt(A[nc].getNc(), 0, 0);
+        dtm.setValueAt(A[nc].getNombre(), 0, 1);
+        dtm.setValueAt(A[nc].getEdad(), 0, 2);
+        dtm.setValueAt(A[nc].getCalif(), 0, 3);
     }
     
-    private void mostrarA(int nc){
-        dtmA.setValueAt(B[nc].getNc(), nc, 0);
-        dtmA.setValueAt(B[nc].getNombre(), nc, 1);
-        dtmA.setValueAt(B[nc].getEdad(), nc, 2);
-        dtmA.setValueAt(B[nc].getCalif(), nc, 3);
+    private void mostrarB(int hc, String nc){
+        tblAlumnos.setVisible(false);
+        
+        dtmA.setRowCount(0);
+        dtmA.setRowCount(dtm.getRowCount()+1);
+        
+        if(!B[hc].getNc().equals(nc)){
+            dtmA.setValueAt(B[hc++].getNc(), 0, 0);
+            dtmA.setValueAt(B[hc++].getNombre(), 0, 1);
+            dtmA.setValueAt(B[hc++].getEdad(), 0, 2);
+            dtmA.setValueAt(B[hc++].getCalif(), 0, 3);
+        }else{
+            dtmA.setValueAt(B[hc].getNc(), 0, 0);
+            dtmA.setValueAt(B[hc].getNombre(), 0, 1);
+            dtmA.setValueAt(B[hc].getEdad(), 0, 2);
+            dtmA.setValueAt(B[hc].getCalif(), 0, 3);
+        }
+            
+        
     }
     
     private void eliminar(String nc){
