@@ -28,7 +28,7 @@ public class HashFrame extends javax.swing.JFrame {
         dtmB=(DefaultTableModel)tblB.getModel();
         dtmA=(DefaultTableModel)tblAlumnos2.getModel();
         
-        filas=11;//Integer.parseInt(showInputDialog("Ingrese el tamaño de la tabla: "));
+        filas=Integer.parseInt(showInputDialog("Ingrese el tamaño de la tabla: "));
         dtm.setRowCount(filas);
         dtmA.setRowCount(filas);
         pBusqueda.setVisible(false);
@@ -162,7 +162,7 @@ public class HashFrame extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        btnInsertar.setText("Insertar");
+        btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Listo.png"))); // NOI18N
         btnInsertar.setFocusable(false);
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -175,7 +175,7 @@ public class HashFrame extends javax.swing.JFrame {
 
         jToolBar2.setRollover(true);
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar.png"))); // NOI18N
         btnEliminar.setFocusable(false);
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -188,7 +188,7 @@ public class HashFrame extends javax.swing.JFrame {
 
         jToolBar3.setRollover(true);
 
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Actualizar.png"))); // NOI18N
         btnActualizar.setFocusable(false);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -201,7 +201,7 @@ public class HashFrame extends javax.swing.JFrame {
 
         jToolBar4.setRollover(true);
 
-        btnBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Search.png"))); // NOI18N
         btnBuscar.setFocusable(false);
         btnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -306,45 +306,45 @@ public class HashFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(pBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
+                            .addComponent(jLabel8)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNC, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtCalificacion)
-                                    .addComponent(txtEdad)))
-                            .addComponent(jLabel8))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNC, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                        .addComponent(txtNombre)
+                                        .addComponent(txtCalificacion)
+                                        .addComponent(txtEdad))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(pBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToolBar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -371,13 +371,13 @@ public class HashFrame extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(102, 102, 102));
         jPanel4.setForeground(new java.awt.Color(102, 102, 102));
 
-        jButton4.setText("Salir");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Salir.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -401,7 +401,7 @@ public class HashFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("Archivo");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Lista.png"))); // NOI18N
 
         jMenuItem2.setText("Salir");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -413,7 +413,7 @@ public class HashFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Ver");
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Lista.png"))); // NOI18N
 
         jcbB.setSelected(true);
         jcbB.setText("Busqueda");
@@ -488,12 +488,13 @@ public class HashFrame extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // Eliminar
         
+        //dtm.removeRow(5);
+        //dtm.setRowCount(dtm.getRowCount()+1);
+        
         
         try{
-            if(!dtmB.getValueAt(0, 0).toString().equals("")){
+            if(!dtmB.getValueAt(0, 0).toString().equals(""))
                 eliminar(dtmB.getValueAt(0, 0).toString());
-                actualizar();
-            }
             else{
                 showMessageDialog(null,"Por favor ingrese el NC");
                 txtNombre.requestFocus();
@@ -516,24 +517,15 @@ public class HashFrame extends javax.swing.JFrame {
         // Buscar
         try{
             int hc=0;
-            String nc=dtmB.getValueAt(0, 0).toString();
             if(!dtmB.getValueAt(0, 0).toString().equals(""))
-                hc=Busqueda.hash(nc);
+                hc=Busqueda.hash(dtmB.getValueAt(0, 0).toString());
             else{
                 showMessageDialog(null,"Por favor ingrese el NC");
                 txtNombre.requestFocus();
             }
-            
-            if(A[hc].getNc()!=dtmB.getValueAt(0, 0)){
-                mostrarB(hc,nc);
-            }else
-                mostrarA(hc);
-            
-            /*
             dtm.setRowCount(0);
             dtm.setRowCount(dtm.getRowCount()+1);
             dtm.setValueAt(A[hc], 0, 0);
-            */
             
             limpiarBusq();
         }catch(NumberFormatException e){
@@ -541,12 +533,9 @@ public class HashFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // Actualizar
         dtm.setRowCount(filas);
-        tblAlumnos.setVisible(true);
-        tblAlumnos2.setVisible(true);
         actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -632,37 +621,18 @@ public class HashFrame extends javax.swing.JFrame {
         //mostrar(hc);
     }
     
-    private void mostrarA(int nc){
-        tblAlumnos2.setVisible(false);
-        
-        dtm.setRowCount(0);
-        dtm.setRowCount(dtm.getRowCount()+1);
-        
-        dtm.setValueAt(A[nc].getNc(), 0, 0);
-        dtm.setValueAt(A[nc].getNombre(), 0, 1);
-        dtm.setValueAt(A[nc].getEdad(), 0, 2);
-        dtm.setValueAt(A[nc].getCalif(), 0, 3);
+    private void mostrar(int nc){
+        dtm.setValueAt(A[nc].getNc(), nc, 0);
+        dtm.setValueAt(A[nc].getNombre(), nc, 1);
+        dtm.setValueAt(A[nc].getEdad(), nc, 2);
+        dtm.setValueAt(A[nc].getCalif(), nc, 3);
     }
     
-    private void mostrarB(int hc, String nc){
-        tblAlumnos.setVisible(false);
-        
-        dtmA.setRowCount(0);
-        dtmA.setRowCount(dtm.getRowCount()+1);
-        
-        if(!B[hc].getNc().equals(nc)){
-            dtmA.setValueAt(B[hc++].getNc(), 0, 0);
-            dtmA.setValueAt(B[hc++].getNombre(), 0, 1);
-            dtmA.setValueAt(B[hc++].getEdad(), 0, 2);
-            dtmA.setValueAt(B[hc++].getCalif(), 0, 3);
-        }else{
-            dtmA.setValueAt(B[hc].getNc(), 0, 0);
-            dtmA.setValueAt(B[hc].getNombre(), 0, 1);
-            dtmA.setValueAt(B[hc].getEdad(), 0, 2);
-            dtmA.setValueAt(B[hc].getCalif(), 0, 3);
-        }
-            
-        
+    private void mostrarA(int nc){
+        dtmA.setValueAt(B[nc].getNc(), nc, 0);
+        dtmA.setValueAt(B[nc].getNombre(), nc, 1);
+        dtmA.setValueAt(B[nc].getEdad(), nc, 2);
+        dtmA.setValueAt(B[nc].getCalif(), nc, 3);
     }
     
     private void eliminar(String nc){
