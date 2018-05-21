@@ -102,7 +102,7 @@
                                       <Component id="txtEditorial" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Component id="txtTitulo" min="-2" pref="245" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="297" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -114,6 +114,8 @@
                                       <Component id="rbtshell" max="32767" attributes="0"/>
                                       <Component id="rbtnburbuja" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="rbnradix" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -210,6 +212,7 @@
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rbtnburbuja" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbnradix" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="rbtshell" min="-2" max="-2" attributes="0"/>
@@ -538,6 +541,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtndescActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbnradix">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Radix"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

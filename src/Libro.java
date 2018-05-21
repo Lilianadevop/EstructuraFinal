@@ -10,12 +10,12 @@
  */
 public class Libro {
    private String ISBN,titulo, autor,ed;
-   private float precio;
+   private int precio;
 private Metodo m;
     public Libro() {
     }
 
-    public Libro(String ISBN, String titulo, String autor, String ed, float precio) {
+    public Libro(String ISBN, String titulo, String autor, String ed, int precio) {
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
@@ -55,11 +55,11 @@ private Metodo m;
         this.ed = ed;
     }
 
-    public float getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }   
 

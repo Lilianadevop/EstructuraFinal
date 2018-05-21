@@ -22,6 +22,7 @@ public class VentanaLibro extends javax.swing.JFrame {
         m = (DefaultTableModel) tblLibro.getModel();
         buttonGroup1.add(rbtnburbuja);
         buttonGroup1.add(rbtshell);
+        buttonGroup1.add(rbnradix);
         buttonGroup1.add(rbtquick);
         buttonGroup2.add(rbtnasc);
         buttonGroup2.add(rbtndesc);
@@ -73,6 +74,7 @@ public class VentanaLibro extends javax.swing.JFrame {
         rbtquick = new javax.swing.JRadioButton();
         rbtnasc = new javax.swing.JRadioButton();
         rbtndesc = new javax.swing.JRadioButton();
+        rbnradix = new javax.swing.JRadioButton();
 
         jToolBar6.setRollover(true);
 
@@ -221,6 +223,8 @@ public class VentanaLibro extends javax.swing.JFrame {
             }
         });
 
+        rbnradix.setText("Radix");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -247,7 +251,7 @@ public class VentanaLibro extends javax.swing.JFrame {
                                         .addComponent(rbtndesc))
                                     .addComponent(txtEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(297, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -257,6 +261,8 @@ public class VentanaLibro extends javax.swing.JFrame {
                                     .addComponent(rbtquick, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                     .addComponent(rbtshell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(rbtnburbuja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(rbnradix)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +332,8 @@ public class VentanaLibro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbtnburbuja))
+                            .addComponent(rbtnburbuja)
+                            .addComponent(rbnradix))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbtshell))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -390,7 +397,7 @@ public class VentanaLibro extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         //darle click al guardar
-        L[++tope] = new Libro(txtisbn.getText(), txtTitulo.getText(), txtAutor.getText(), txtEditorial.getText(), (Float.parseFloat(txtPrecio.getText())));
+        L[++tope] = new Libro(txtisbn.getText(), txtTitulo.getText(), txtAutor.getText(), txtEditorial.getText(), (Integer.parseInt(txtPrecio.getText())));
         //BloquearCampos();
         //limpicarcampos();
         desBloquearCampos();
@@ -445,11 +452,11 @@ public class VentanaLibro extends javax.swing.JFrame {
        //showMessageDialog(null, m.getRowCount());
        for(int i=0;i<m.getRowCount();i++){
            
-           L1[i]=new Libro(m.getValueAt(i,0).toString(),m.getValueAt(i,1).toString(),m.getValueAt(i,2).toString(),m.getValueAt(i,3).toString(),Float.parseFloat(m.getValueAt(i,4).toString()));
+           L1[i]=new Libro(m.getValueAt(i,0).toString(),m.getValueAt(i,1).toString(),m.getValueAt(i,2).toString(),m.getValueAt(i,3).toString(),Integer.parseInt(m.getValueAt(i,4).toString()));
        }
        
        if(L1.length>0)
-            Metodo.ordBurbuja(L1);
+            Metodo.ordBurbujaAlmno(L1,true,tblLibro.getSelectedColumn());
         
        int pos = binariaRecur(L1,txtvalue.getText(), 0, L1.length - 1);
        if (pos != -1) {
@@ -468,7 +475,7 @@ public class VentanaLibro extends javax.swing.JFrame {
         L=new Libro [m.getRowCount()];
         for(int i=0;i<m.getRowCount();i++){
        L[i] = new Libro (m.getValueAt(i, 0).toString(),m.getValueAt(i,1).toString(),m.getValueAt(i, 2).toString(),
-                                 m.getValueAt(i, 3).toString(),Float.parseFloat(m.getValueAt(i, 4).toString()));}
+                                 m.getValueAt(i, 3).toString(),Integer.parseInt(m.getValueAt(i, 4).toString()));}
         boolean a=rbtnasc.isSelected();
         if(rbtnburbuja.isSelected()){
         Metodo.ordBurbujaAlmno(L, a,tblLibro.getSelectedColumn());
@@ -478,6 +485,10 @@ public class VentanaLibro extends javax.swing.JFrame {
         }
         if(rbtshell.isSelected()){
         Metodo.shellasc(L, a,tblLibro.getSelectedColumn());
+        }
+        if(rbnradix.isSelected()){
+        Metodo.radixSort(L, a,tblLibro.getSelectedColumn());
+        
         }
        // if(rbradix.isSelected()){
        // Examen_Unid5.radixMateria(M, a,btnmateria.getSelectedColumn());
@@ -646,6 +657,7 @@ public class VentanaLibro extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar7;
     private javax.swing.JToolBar jToolBar8;
     private javax.swing.JToolBar jToolBar9;
+    private javax.swing.JRadioButton rbnradix;
     private javax.swing.JRadioButton rbtnasc;
     private javax.swing.JRadioButton rbtnburbuja;
     private javax.swing.JRadioButton rbtndesc;

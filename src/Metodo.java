@@ -95,12 +95,12 @@ public class Metodo {
                        case 4:
 
                         if (M[i].getPrecio() > M[i + 1].getPrecio()) {
-                            float aux = M[i].getPrecio();
+                            int aux = M[i].getPrecio();
                             M[i].setPrecio(M[i + 1].getPrecio());
                             M[i + 1].setPrecio(aux);
                         } //segundo if
                         else if (M[i].getPrecio() < M[i + 1].getPrecio()) {
-                            float aux = M[i].getPrecio();
+                            int aux = M[i].getPrecio();
                             M[i].setPrecio(M[i + 1].getPrecio());
                             M[i + 1].setPrecio(aux);
                         } //segundo if
@@ -268,7 +268,7 @@ public class Metodo {
                 }
                 break;
             case 4://Calificacion
-                float piv = A[izq].getPrecio(),
+                int piv = A[izq].getPrecio(),
                  auxx;
                 i = izq;
                 j = der;
@@ -440,12 +440,12 @@ public class Metodo {
                     cambios = false;
                     for (int i = 0; i < z - x; i++) {
                         if (asc && A[i].getPrecio() > A[i + x].getPrecio()) {
-                            Float aux = A[i].getPrecio();
+                            int aux = A[i].getPrecio();
                             A[i].setPrecio(A[i + x].getPrecio());
                             A[i + x].setPrecio(aux);
                             cambios = true;
                         } else if (!asc && A[i].getPrecio() < A[i + x].getPrecio()) {
-                            Float aux = A[i].getPrecio();
+                            int aux = A[i].getPrecio();
                             A[i].setPrecio(A[i + x].getPrecio());
                             A[i + x].setPrecio(aux);
                             cambios = true;
@@ -459,62 +459,69 @@ public class Metodo {
         }//switch
     }//metodo shell materia
     
-     public static int[] radixSort(int L[], boolean asc){
-      int tam=L.length, mayor=L[0];
-      
-      
-      for(int i=1; i<tam; i++)
-          if(L[i]>mayor)mayor=L[i];          
-         int d=(mayor+"").length();
-      
-          ColaSimple M[]= new ColaSimple[10];
-          for(int i=0; i<10; i++)M[i]=new ColaSimple(tam);
-          
-          for(int dig=1; dig<=d; dig++)
-          {
-              for(int j=0;j<tam; j++){
-                  String num=L[j]+"";
-                  int inicio=num.length()-dig,fin=inicio+1,pos;
-                  if(inicio<0)pos=0;
-                  else
-                   pos=Integer.parseInt(num.substring(inicio, fin));
-                   M[pos].meter(L[j]);
-                        }//for
-             if (asc){
-              int a=0;
-              for(int c=0; c<10;c++){
-                while(!M[c].vacia())
-                    L[a++]=M[c].sacar();
-              } }
-             else {
-              int a=0;
-              for(int c=9; c>=0;c--){
-                while(!M[c].vacia())
-                    L[a++]=M[c].sacar();
-              }
-             }
-          }
-       
-         return L;
-  }//Radix 
+     public static Libro[] radixSort(Libro L[], boolean asc, int c){
+      switch(c){
+          case 0:
+              showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
+              break;
+          case 1:
+              showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
+              break;
+      case 2:
+          showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
+              break;
+          case 3:
+              showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
+              break;
+      case 4:
+          //float [] E = new int[F.length];
+           int mayor,
+                 n,
+                 j;
+                int []E = new int[L.length];
+                j = 0;
+                for (Libro al : L) {
+                    E[j] = al.getPrecio();
+                    j++;
+                }//for
+                mayor = E[0];
+                n = E.length;
+                for (int i = 0; i < n; i++) {
+                    if (E[i] > mayor) {
+                        mayor = E[i];
+                    }//if
+                }//for
+                int d = (mayor + "").length();
+                //Buscar cola simple
+                ColaSimple[] M = new ColaSimple[10];//Reserva espacio
+//for(int i=1;i<n;i++)
+                for (int i = 1; i < 10; i++) {
+                    M[i] = new ColaSimple(n);//Crear colas, del tamaÃ±o del arreglo
+                }//for
+                //int cc=0;
+                for (int dig = 1; dig <= d; dig++) {
+                    for (int i = 0; i < n; i++) {//Recorre todos los elementos del arreglo
+                        String num = E[i] + "";
+                        int inicio = num.length() - dig, pos, fin = inicio + 1;
+                        if (inicio < 0) {
+                            pos = 0;
+                        }//if
+                        pos = Integer.parseInt(num.substring(inicio, fin));
 
-     
-     public static void ordBurbuja(Libro A[]) {
-        int n = A.length;
-        for (int p = 1; p < n; p++) {
-            for (int i = 0; i < n - p; i++) {
-                if(A[i]!=null){
-                    if(A[i+1]!=null){
-                        if (A[i].getISBN().compareToIgnoreCase(A[i+1].getISBN()) > 0) {
-                            String aux = A[i].getISBN();
-                            A[i].setISBN(A[i+1].getISBN());
-                            A[i + 1].setISBN(aux); 
-                        }
+                        M[pos].meter(E[i]);//Insertar, EstaLlenaException
+                    }//for
+                    int a = 0; //Regresar los datos al array original, ordenados por digito
+
+                    for (c = 0; c < 10; c++) //while(M[cc].getFin()>=0)
+                    {
+                        while (!M[c].vacia()) {
+                            E[a++] = M[c].sacar(); //Obtener, EstaVaciaException
+
+                        }//while
                     }
-                    
-                }
-            }
-        }
 
-    }//metodo burbuja
+                    }//radix materia
+                }//switch
+        return L;
+        }//radix materia
 }//clase
