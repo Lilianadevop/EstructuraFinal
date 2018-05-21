@@ -463,20 +463,25 @@ public class HashFrame extends javax.swing.JFrame {
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         
         // Ingresar
-        try{
-            if(!txtNombre.getText().equals(""))
-                ingresar();
-            else{
-                showMessageDialog(null,"Por favor ingrese el nombre del alumno.");
-                txtNombre.requestFocus();
-            }
-                
-            
-        }catch(NumberFormatException e){
-            showMessageDialog(null,"Por favor complete todos los registros con el tipo adecuado de dato.");
-        }
+        int hc=Busqueda.hash(txtNC.getText());
         
-        limpiarTXT();
+        if(A[hc]!=null){
+            if(Integer.parseInt(A[hc].getNc())!=Integer.parseInt(txtNC.getText())){
+                
+                if(B[hc]!=null)
+                    B[hc+1]=new Alumno(txtNC.getText(),txtNombre.getText(),Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtCalificacion.getText()));
+                else
+                    B[hc]=new Alumno(txtNC.getText(),txtNombre.getText(),Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtCalificacion.getText()));
+                
+           }else{
+                //B[hc]=new Alumno(txtNC.getText(),txtNombre.getText(),Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtCalificacion.getText()));
+                showMessageDialog(null,"Numero de control repetido.");
+                txtNC.requestFocus();
+            }
+        }else
+            A[hc] = new Alumno(txtNC.getText(), txtNombre.getText(), Integer.parseInt(txtEdad.getText()), Integer.parseInt(txtCalificacion.getText()));
+                
+        actualizar();
 
     }//GEN-LAST:event_btnInsertarActionPerformed
 
@@ -493,8 +498,10 @@ public class HashFrame extends javax.swing.JFrame {
         
         
         try{
-            if(!dtmB.getValueAt(0, 0).toString().equals(""))
+            if(!dtmB.getValueAt(0, 0).toString().equals("")){
                 eliminar(dtmB.getValueAt(0, 0).toString());
+                actualizar();
+            }
             else{
                 showMessageDialog(null,"Por favor ingrese el NC");
                 txtNombre.requestFocus();
@@ -517,15 +524,24 @@ public class HashFrame extends javax.swing.JFrame {
         // Buscar
         try{
             int hc=0;
+            String nc=dtmB.getValueAt(0, 0).toString();
             if(!dtmB.getValueAt(0, 0).toString().equals(""))
-                hc=Busqueda.hash(dtmB.getValueAt(0, 0).toString());
+                hc=Busqueda.hash(nc);
             else{
                 showMessageDialog(null,"Por favor ingrese el NC");
                 txtNombre.requestFocus();
             }
+            
+            if(A[hc].getNc()!=dtmB.getValueAt(0, 0)){
+                mostrarB(hc,nc);
+            }else
+                mostrarA(hc);
+            
+            /*
             dtm.setRowCount(0);
             dtm.setRowCount(dtm.getRowCount()+1);
             dtm.setValueAt(A[hc], 0, 0);
+            */
             
             limpiarBusq();
         }catch(NumberFormatException e){
@@ -536,6 +552,8 @@ public class HashFrame extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // Actualizar
         dtm.setRowCount(filas);
+        tblAlumnos.setVisible(true);
+        tblAlumnos2.setVisible(true);
         actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -629,10 +647,34 @@ public class HashFrame extends javax.swing.JFrame {
     }
     
     private void mostrarA(int nc){
-        dtmA.setValueAt(B[nc].getNc(), nc, 0);
-        dtmA.setValueAt(B[nc].getNombre(), nc, 1);
-        dtmA.setValueAt(B[nc].getEdad(), nc, 2);
-        dtmA.setValueAt(B[nc].getCalif(), nc, 3);
+        tblAlumnos2.setVisible(false);
+        
+        dtm.setRowCount(0);
+        dtm.setRowCount(dtm.getRowCount()+1);
+        
+        dtm.setValueAt(A[nc].getNc(), 0, 0);
+        dtm.setValueAt(A[nc].getNombre(), 0, 1);
+        dtm.setValueAt(A[nc].getEdad(), 0, 2);
+        dtm.setValueAt(A[nc].getCalif(), 0, 3);
+    }
+    
+    private void mostrarB(int hc, String nc){
+        tblAlumnos.setVisible(false);
+        
+        dtmA.setRowCount(0);
+        dtmA.setRowCount(dtm.getRowCount()+1);
+        
+        if(!B[hc].getNc().equals(nc)){
+            dtmA.setValueAt(B[hc++].getNc(), 0, 0);
+            dtmA.setValueAt(B[hc++].getNombre(), 0, 1);
+            dtmA.setValueAt(B[hc++].getEdad(), 0, 2);
+            dtmA.setValueAt(B[hc++].getCalif(), 0, 3);
+        }else{
+            dtmA.setValueAt(B[hc].getNc(), 0, 0);
+            dtmA.setValueAt(B[hc].getNombre(), 0, 1);
+            dtmA.setValueAt(B[hc].getEdad(), 0, 2);
+            dtmA.setValueAt(B[hc].getCalif(), 0, 3);
+        }
     }
     
     private void eliminar(String nc){
@@ -726,24 +768,6 @@ public class HashFrame extends javax.swing.JFrame {
         
         limpiarBusq();
     }
-    
-    /*
-    
-    
-    private int posHash(String nc){
-        return Integer.parseInt(nc)%10;
-    }
-    
-    
-    private void mostrar(String nc){
-        dtm.setValueAt(A[posHash(nc)].getNc(), posHash(nc), 0);
-        dtm.setValueAt(A[posHash(nc)].getNombre(), posHash(nc), 1);
-        dtm.setValueAt(A[posHash(nc)].getEdad(), posHash(nc), 2);
-        dtm.setValueAt(A[posHash(nc)].getCalif(), posHash(nc), 3);
-    }
-    */
-    
-    
     
     
 
