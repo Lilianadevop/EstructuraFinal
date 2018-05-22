@@ -25,6 +25,10 @@ public class Metodo {
      }//for
      return false;
 }//busqueda secuencial
+     
+     
+     
+     
      public static void ordBurbujaAlmno(Libro M[], boolean desc, int e) {
 
         for (int p = 1; p <= M.length; p++) {
@@ -474,54 +478,39 @@ public class Metodo {
               showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
               break;
       case 4:
-          //float [] E = new int[F.length];
-           int mayor,
-                 n,
-                 j;
-                int []E = new int[L.length];
-                j = 0;
-                for (Libro al : L) {
-                    E[j] = al.getPrecio();
-                    j++;
-                }//for
-                mayor = E[0];
-                n = E.length;
-                for (int i = 0; i < n; i++) {
-                    if (E[i] > mayor) {
-                        mayor = E[i];
-                    }//if
-                }//for
-                int d = (mayor + "").length();
-                //Buscar cola simple
-                ColaSimple[] M = new ColaSimple[10];//Reserva espacio
-//for(int i=1;i<n;i++)
-                for (int i = 1; i < 10; i++) {
-                    M[i] = new ColaSimple(n);//Crear colas, del tamaÃ±o del arreglo
-                }//for
-                //int cc=0;
-                for (int dig = 1; dig <= d; dig++) {
-                    for (int i = 0; i < n; i++) {//Recorre todos los elementos del arreglo
-                        String num = E[i] + "";
-                        int inicio = num.length() - dig, pos, fin = inicio + 1;
-                        if (inicio < 0) {
-                            pos = 0;
-                        }//if
-                        pos = Integer.parseInt(num.substring(inicio, fin));
-
-                        M[pos].meter(E[i]);//Insertar, EstaLlenaException
-                    }//for
-                    int a = 0; //Regresar los datos al array original, ordenados por digito
-
-                    for (c = 0; c < 10; c++) //while(M[cc].getFin()>=0)
-                    {
-                        while (!M[c].vacia()) {
-                            E[a++] = M[c].sacar(); //Obtener, EstaVaciaException
-
-                        }//while
-                    }
-
-                    }//radix materia
-                }//switch
-        return L;
-        }//radix materia
+           int tam=L.length, mayor=L[0].getPrecio();
+      for(int i=1; i<tam; i++)
+          if(L[i].getPrecio()>mayor) mayor=L[i].getPrecio();          
+         int d=(mayor+"").length();
+      
+          ColaSimple M[]= new ColaSimple[10];
+          for(int i=0; i<10; i++)M[i]=new ColaSimple(tam);
+          
+          for(int dig=1; dig<=d; dig++)
+          {
+              for(int j=0;j<tam; j++){
+                  String num=L[j].getPrecio()+"";
+                  int inicio=num.length()-dig,fin=inicio+1,pos;
+                  if(inicio<0)pos=0;
+                  else
+                   pos=Integer.parseInt(num.substring(inicio, fin));
+                   M[pos].meter(L[j].getPrecio());
+                        }//for
+             if (asc){
+              int a=0;
+              for(int z=0; z<10;z++){
+                while(!M[z].vacia())
+                    L[a++].setPrecio(M[z].sacar());
+              } }
+             else {
+              int a=0;
+              for(int z=9; z>=0;z--){
+                while(!M[z].vacia())
+                    L[a++].setPrecio(M[z].sacar());
+                 }
+             }
+          }//for
+          }//switch
+         return L;
+     }//radix  
 }//clase

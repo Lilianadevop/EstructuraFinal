@@ -53,14 +53,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,29 +95,29 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtPrecio" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="txtPrecio" min="-2" pref="206" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
+                                          <Component id="txtEditorial" min="-2" pref="125" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="299" max="-2" attributes="0"/>
                                           <Component id="rbtnasc" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="rbtndesc" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtEditorial" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                                      <Component id="txtTitulo" min="-2" pref="245" max="-2" attributes="0"/>
+                                      <Component id="txtTitulo" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="297" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtAutor" min="-2" pref="291" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="rbtquick" pref="0" max="32767" attributes="0"/>
-                                      <Component id="rbtshell" max="32767" attributes="0"/>
-                                      <Component id="rbtnburbuja" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="rbtnburbuja" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="rbtshell" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="rbtquick" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="rbnradix" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -128,42 +131,44 @@
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jToolBar1" min="-2" pref="76" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jToolBar7" min="-2" pref="98" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btncan" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jToolBar4" min="-2" pref="88" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  <Component id="btnbinaria" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="212" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                          <Component id="txtvalue" min="-2" pref="118" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="cbmIndex" min="-2" pref="128" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="txtisbn" min="-2" pref="173" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jToolBar4" min="-2" pref="88" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbmIndex" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Component id="txtvalue" min="-2" pref="84" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="btnbinaria" min="-2" pref="78" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="212" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="257" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -212,28 +217,40 @@
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rbtnburbuja" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbtshell" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbtquick" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rbnradix" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="rbtshell" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel6" min="-2" pref="180" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="txtEditorial" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbtquick" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEditorial" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="rbtnasc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbtndesc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -243,12 +260,7 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="rbtnasc" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rbtndesc" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="211" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -314,11 +326,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="ISBN" type="java.lang.Object"/>
-                    <Column editable="true" title="Titulo" type="java.lang.Object"/>
-                    <Column editable="true" title="Autor" type="java.lang.Object"/>
-                    <Column editable="true" title="Editorial" type="java.lang.Object"/>
-                    <Column editable="true" title="Precio" type="java.lang.Object"/>
+                    <Column editable="false" title="ISBN" type="java.lang.Object"/>
+                    <Column editable="false" title="Titulo" type="java.lang.Object"/>
+                    <Column editable="false" title="Autor" type="java.lang.Object"/>
+                    <Column editable="false" title="Editorial" type="java.lang.Object"/>
+                    <Column editable="false" title="Precio" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="cellSelectionEnabled" type="boolean" value="true"/>
@@ -545,6 +557,14 @@
         <Component class="javax.swing.JRadioButton" name="rbnradix">
           <Properties>
             <Property name="text" type="java.lang.String" value="Radix"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="*Metodos de ordenamiento**"/>
           </Properties>
         </Component>
       </SubComponents>
