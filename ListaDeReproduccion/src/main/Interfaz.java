@@ -88,6 +88,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(0, 0, 0));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Derecha.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -319,7 +324,9 @@ public class Interfaz extends javax.swing.JFrame {
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 f = filePick.getSelectedFile();
-                lista.insertar(new Cancion(f));
+                actual=new Cancion(f);
+                lista.insertar(actual);
+                lblCancionActual.setText(f.getName());
             }
 
         } catch (Exception e) {
@@ -328,6 +335,18 @@ public class Interfaz extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // Siguiente
+        
+        lista.siguiente(actual);
+        cont=0;
+        reproducir();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void actualizarTbl(){
+        
+    }
+    
     private void detener(){
         reproduciendo=false;
         btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Play.png")));
@@ -344,7 +363,7 @@ public class Interfaz extends javax.swing.JFrame {
             btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Pause.png")));
             if (cont <= 0) {
                 try {
-                    player.open(f);
+                    player.open(actual.getArchivo());
                     player.play();
                 } catch (BasicPlayerException e) {
                     //e.printStackTrace();
@@ -396,6 +415,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
 
+    private Cancion actual;
     private ListaDE lista;
     private String nombreCancion;
     private int cont;

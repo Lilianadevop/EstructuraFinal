@@ -75,6 +75,19 @@ public class ListaDE {
     }
 */
     
+    public Cancion siguiente(Cancion c){
+        NodoDE temp = existe(c);
+        
+        
+        
+        return temp.getSig().getCancion();
+    }
+    
+    public Cancion anterior(Cancion c){
+        NodoDE temp = existe(c);
+        return temp.getAnt().getCancion();
+    }
+    
     public String mostrar() throws EstaVaciaException{
         String cad = "";
         if (!estaVacia()) {
