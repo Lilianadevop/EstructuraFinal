@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javax.swing.ImageIcon;
@@ -33,7 +35,7 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
         reproduciendo=false;
         btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Play.png")));
-        
+        player = new BasicPlayer();
     }
 
     /**
@@ -235,7 +237,11 @@ public class Interfaz extends javax.swing.JFrame {
             int returnVal = filePick.showOpenDialog(this);
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                File file = filePick.getSelectedFile();
+                f = filePick.getSelectedFile();
+                
+                //Agregar el archivo a la lista
+                //files[files.length]=file;
+                
                 
                 //txtArea.setText(reader.leer(file));
                 //this.setTitle(file.getName());
@@ -250,21 +256,32 @@ public class Interfaz extends javax.swing.JFrame {
     private void detener(){
         reproduciendo=false;
         btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Play.png")));
-        
+        try {
+            player.pause();
+        } catch (BasicPlayerException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void reproducir(){
+        
+        
+        
         reproduciendo=true;
         btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Pause.png")));
         
-        String songName = "HungryKidsofHungary-ScatteredDiamonds.mp3";
+        //String songName = f.getName();
         
-        String pathToMp3 = System.getProperty("user.dir") + "/" + songName;
-        BasicPlayer player = new BasicPlayer();
+        
+        
+        //String pathToMp3 = System.getProperty("user.dir") + "/" + songName;
+        //String pathToMp3 = f.getPath()+"/"+songName;
+        
+        
         try {
-            player.open(new URL("file:///" + pathToMp3));
+            player.open(f);
             player.play();
-        } catch (BasicPlayerException | MalformedURLException e) {
+        } catch (BasicPlayerException e) {
             e.printStackTrace();
         }
     }
@@ -304,6 +321,9 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
 
+    private BasicPlayer player;
+    private File f;
+    private File[] files;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPlay;
     private javax.swing.JButton jButton1;
