@@ -14,23 +14,79 @@ import static javax.swing.JOptionPane.*;
 public class Metodo {
  // private Libro L;
     
-     public static  boolean bSec(Libro L[],String nombre,int tam){
-     boolean buscar=false;
-     for(int i=0;i<tam && buscar==false;i++){
-     if(nombre.equalsIgnoreCase(L[i].getTitulo())
-             || nombre.equalsIgnoreCase(L[i].getAutor()) || nombre.equalsIgnoreCase(L[i].getEd())|| nombre.equalsIgnoreCase(L[i].getISBN())
-             || nombre.equalsIgnoreCase(String.valueOf(String.valueOf(L[i].getPrecio())))){
-               buscar=true;
-               showMessageDialog(null," Se ha encontrado" + "\n" + L[i].toString());
-                // showMessageDialog(null, "[" + L[i].getISBN());
-     }//if
-      else
-                showMessageDialog(null, "No se encontro  su busqueda");
-     }//for
-     return false;
+     public static  boolean bSec(Libro L[],String nombre,int tam, int opt){
+         switch(opt){
+             case 1:
+                 boolean buscar = false;
+                 for (int i = 0; i < tam && buscar == false; i++) {
+                     if (nombre.equalsIgnoreCase(L[i].getISBN())) {
+                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                         return buscar=true;
+                     }//if
+                     else {
+                         showMessageDialog(null, "No se encontro  su busqueda");
+                     }
+                     
+                 }//for
+                 
+                 break;
+             case 2:
+                 buscar = false;
+                 for (int i = 0; i < tam && buscar == false; i++) {
+                     if (nombre.equalsIgnoreCase(L[i].getTitulo())) {
+                         
+                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                         return buscar = true;
+                     }//if
+                     else {
+                         showMessageDialog(null, "No se encontro  su busqueda");
+                     }
+                 }//for
+                 break;
+             case 3:
+                 buscar = false;
+                 for (int i = 0; i < tam && buscar == false; i++) {
+                     if (nombre.equalsIgnoreCase(L[i].getAutor())) {
+                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                         return buscar = true;
+                     }//if
+                     else {
+                         showMessageDialog(null, "No se encontro  su busqueda");
+                     }
+                 }//for
+                 break;
+             case 4:
+                 buscar = false;
+                 for (int i = 0; i < tam && buscar == false; i++) {
+                     if (nombre.equalsIgnoreCase(L[i].getEd())) {
+                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                         return buscar = true;
+                     }//if
+                     else {
+                         showMessageDialog(null, "No se encontro  su busqueda");
+                     }
+                 }//for
+                 break;
+             case 5:
+                 buscar = false;
+                 for (int i = 0; i < tam && buscar == false; i++) {
+                     if (Integer.parseInt(nombre)==L[i].getPrecio()) {
+                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                         return buscar = true;
+                     }//if
+                     else {
+                         showMessageDialog(null, "No se encontro  su busqueda");
+                     }
+                 }//for
+                 break;
+                 
+             default:
+                 
+                 break;
+         }
+         
+         return false;
 }//busqueda secuencial
-     
-     
      
      
      public static void ordBurbujaAlmno(Libro M[], boolean desc, int e) {

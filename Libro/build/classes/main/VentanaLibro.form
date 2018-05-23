@@ -289,7 +289,7 @@
               <StringArray count="6">
                 <StringItem index="0" value="Criterio"/>
                 <StringItem index="1" value="ISBN"/>
-                <StringItem index="2" value="titulo"/>
+                <StringItem index="2" value="Titulo"/>
                 <StringItem index="3" value="Autor"/>
                 <StringItem index="4" value="Editorial"/>
                 <StringItem index="5" value="Precio"/>

@@ -178,7 +178,7 @@ public class VentanaLibro extends javax.swing.JFrame {
         });
         jToolBar3.add(btnbuscar);
 
-        cbmIndex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Criterio", "ISBN", "titulo", "Autor", "Editorial", "Precio" }));
+        cbmIndex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Criterio", "ISBN", "Titulo", "Autor", "Editorial", "Precio" }));
         cbmIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbmIndexActionPerformed(evt);
@@ -453,19 +453,13 @@ public class VentanaLibro extends javax.swing.JFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         //boton de buscar en general por todos los campos
-        if (!(txtvalue.getText().equals(""))) {
-            if (Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount())) {
-                showMessageDialog(null, "se ha encontrado su busqueda");
-            }//if
-            //else
-               // showMessageDialog(null, "No se encontro  su busqueda");
+        if (!txtvalue.getText().equals("") && cbmIndex.getSelectedIndex()!=0 )
+            Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount(),cbmIndex.getSelectedIndex());
+        else{
+            showMessageDialog(null, "Por favor ingrese el dato y criterio a buscar");
+            txtvalue.requestFocus();
+        }
             
-
-            
-            
-//showMessageDialog(null,busquedaSec(L,cbmIndex.getSelectedIndex(),txtvalue.getText()));
-        }else
-            showMessageDialog(null, "Favor de introducir el dato a buscar");
             
     }//GEN-LAST:event_btnbuscarActionPerformed
 
