@@ -19,8 +19,11 @@ public class ListaDE {
     }
     
     public void insertar(Cancion d){
-        if(estaVacia())
+        if(estaVacia()){
             inicio=fin=new NodoDE(d);
+            inicio.setSig(fin);
+            fin.setAnt(inicio);
+        }
         else{
             fin.setSig(new NodoDE(d));
             fin.getSig().setAnt(fin);
@@ -33,9 +36,14 @@ public class ListaDE {
     }
     
     public NodoDE existe(Cancion d){
-        for(NodoDE i=inicio; i!=null;i=i.getSig())
-            if(i.getCancion()==d)
-                return i;
+        if(inicio.getCancion()==d)
+            return inicio;
+        else if(fin.getCancion()==d)
+                return fin;
+        else
+            for(NodoDE i=inicio; i!=null;i=i.getSig())
+                if(i.getCancion()==d)
+                    return i;
         
         
         return null;
@@ -76,16 +84,27 @@ public class ListaDE {
 */
     
     public Cancion siguiente(Cancion c){
-        NodoDE temp = existe(c);
-        
-        
-        
-        return temp.getSig().getCancion();
+        if(!estaVacia()){
+            if(inicio.getCancion()==c)
+                return c;
+            else if(fin.getCancion()==c)
+                return c;
+            else{
+                NodoDE temp = existe(c);
+                if(temp!=null)
+                    return temp.getSig().getCancion();
+            }
+        }
+        return null;
     }
     
     public Cancion anterior(Cancion c){
-        NodoDE temp = existe(c);
-        return temp.getAnt().getCancion();
+        if(!estaVacia()){
+            NodoDE temp = existe(c);
+            if(temp!=null)
+                return temp.getAnt().getCancion();
+        }
+        return null;
     }
     
     public String mostrar() throws EstaVaciaException{
@@ -102,11 +121,29 @@ public class ListaDE {
         return cad;
     }
     
-    public Cancion getCancion(){
-        if(!estaVacia()){
-            
-        }
-        return new Cancion();
+    public Cancion getInicio(){
+        return inicio.getCancion();
+    }
+    
+    public NodoDE getInicioN(){
+        return inicio;
+    }
+    
+    public Cancion getFin(){
+        return fin.getCancion();
+    }
+    
+    public NodoDE getFinN(){
+        return fin;
+    }
+    
+    public int getTam(){
+        int tam=0;
+        if (!estaVacia()) 
+            for (NodoDE i = inicio; i != fin; i=i.getSig())
+                tam++;
+        
+        return tam;
     }
     
     
