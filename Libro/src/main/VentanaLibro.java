@@ -1,6 +1,7 @@
 package main;
 
 
+import busqueda.Busqueda;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -453,12 +454,13 @@ public class VentanaLibro extends javax.swing.JFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         //boton de buscar en general por todos los campos
-        if (!txtvalue.getText().equals("") && cbmIndex.getSelectedIndex()!=0 )
-            Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount(),cbmIndex.getSelectedIndex());
-        else{
+        if (txtvalue.getText().equals("") || cbmIndex.getSelectedIndex()==0 ){
             showMessageDialog(null, "Por favor ingrese el dato y criterio a buscar");
             txtvalue.requestFocus();
-        }
+        }else
+            if(!Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount(),cbmIndex.getSelectedIndex()))
+                showMessageDialog(null, "No se encontro");
+        
             
             
     }//GEN-LAST:event_btnbuscarActionPerformed
@@ -515,7 +517,10 @@ public class VentanaLibro extends javax.swing.JFrame {
        if(L1.length>0)
             Metodo.ordBurbujaAlmno(L1,true,tblLibro.getSelectedColumn());
         
-       int pos = binariaRecur(L1,txtvalue.getText(), 0, L1.length - 1);
+       int opt=cbmIndex.getSelectedIndex();
+       
+       int pos=Busqueda.binaria(L1, txtvalue.getText(),opt);
+       //int pos = binariaRecur(L1,txtvalue.getText(), 0, L1.length - 1);
        if (pos != -1) {
             showMessageDialog(rootPane, "se encuentra en la posición " + pos++);}
        else { showMessageDialog(rootPane, "no se encuentra ");} 
