@@ -5,175 +5,196 @@ package main;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Alondriwis
  */
 import static javax.swing.JOptionPane.*;
+
 public class Metodo {
- // private Libro L;
-    
-     public static  boolean bSec(Libro L[],String nombre,int tam, int opt){
-         switch(opt){
-             case 1:
-                 boolean buscar = false;
-                 for (int i = 0; i < tam && buscar == false; i++) {
-                     if (nombre.equalsIgnoreCase(L[i].getISBN())) {
-                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
-                         return buscar=true;
-                     }//if
-                     else {
-                         showMessageDialog(null, "No se encontro  su busqueda");
-                     }
-                     
-                 }//for
-                 
-                 break;
-             case 2:
-                 buscar = false;
-                 for (int i = 0; i < tam && buscar == false; i++) {
-                     if (nombre.equalsIgnoreCase(L[i].getTitulo())) {
-                         
-                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
-                         return buscar = true;
-                     }//if
-                     else {
-                         showMessageDialog(null, "No se encontro  su busqueda");
-                     }
-                 }//for
-                 break;
-             case 3:
-                 buscar = false;
-                 for (int i = 0; i < tam && buscar == false; i++) {
-                     if (nombre.equalsIgnoreCase(L[i].getAutor())) {
-                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
-                         return buscar = true;
-                     }//if
-                     else {
-                         showMessageDialog(null, "No se encontro  su busqueda");
-                     }
-                 }//for
-                 break;
-             case 4:
-                 buscar = false;
-                 for (int i = 0; i < tam && buscar == false; i++) {
-                     if (nombre.equalsIgnoreCase(L[i].getEd())) {
-                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
-                         return buscar = true;
-                     }//if
-                     else {
-                         showMessageDialog(null, "No se encontro  su busqueda");
-                     }
-                 }//for
-                 break;
-             case 5:
-                 buscar = false;
-                 for (int i = 0; i < tam && buscar == false; i++) {
-                     if (Integer.parseInt(nombre)==L[i].getPrecio()) {
-                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
-                         return buscar = true;
-                     }//if
-                     else {
-                         showMessageDialog(null, "No se encontro  su busqueda");
-                     }
-                 }//for
-                 break;
-                 
-             default:
-                 
-                 break;
-         }
-         
-         return false;
-}//busqueda secuencial
-     
-     
-     public static void ordBurbujaAlmno(Libro M[], boolean desc, int e) {
+    // private Libro L;
+
+    public static boolean bSec(Libro L[], String nombre, int tam, int opt) {
+        switch (opt) {
+            case 1:
+                boolean buscar = false;
+                for (int i = 0; i < tam && buscar == false; i++) {
+                    if (nombre.equalsIgnoreCase(L[i].getISBN())) {
+                        showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                        return buscar = true;
+                    }//if
+                    else {
+                        showMessageDialog(null, "No se encontro  su busqueda");
+                    }
+
+                }//for
+
+                break;
+            case 2:
+                buscar = false;
+                for (int i = 0; i < tam && buscar == false; i++) {
+                    if (nombre.equalsIgnoreCase(L[i].getTitulo())) {
+
+                        showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                        return buscar = true;
+                    }//if
+                    else {
+                        showMessageDialog(null, "No se encontro  su busqueda");
+                    }
+                }//for
+                break;
+            case 3:
+                buscar = false;
+                for (int i = 0; i < tam && buscar == false; i++) {
+                    if (nombre.equalsIgnoreCase(L[i].getAutor())) {
+                        showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                        return buscar = true;
+                    }//if
+                    else {
+                        showMessageDialog(null, "No se encontro  su busqueda");
+                    }
+                }//for
+                break;
+            case 4:
+                buscar = false;
+                for (int i = 0; i < tam && buscar == false; i++) {
+                    if (nombre.equalsIgnoreCase(L[i].getEd())) {
+                        showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                        return buscar = true;
+                    }//if
+                    else {
+                        showMessageDialog(null, "No se encontro  su busqueda");
+                    }
+                }//for
+                break;
+            case 5:
+                buscar = false;
+                for (int i = 0; i < tam && buscar == false; i++) {
+                    if (Integer.parseInt(nombre) == L[i].getPrecio()) {
+                        showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
+                        return buscar = true;
+                    }//if
+                    else {
+                        showMessageDialog(null, "No se encontro  su busqueda");
+                    }
+                }//for
+                break;
+
+            default:
+
+                break;
+        }
+
+        return false;
+    }//busqueda secuencial
+
+    public static void ordBurbujaAlmno(Libro M[], boolean asc, int e) {
 
         for (int p = 1; p <= M.length; p++) {
             for (int i = 0; i < M.length - p; i++) {
                 switch (e) {
-
                     case 0:
-                        if (M[i].getISBN().compareToIgnoreCase(M[i + 1].getISBN()) > 0) {
-                            String aux = M[i].getISBN();
-                            M[i].setISBN(M[i + 1].getISBN());
 
-                            M[i + 1].setISBN(aux);
-                        } //fin if
-                        else if (M[i].getISBN().compareToIgnoreCase(M[i + 1].getISBN()) < 0) {
-                            String aux = M[i].getISBN();
-                            M[i].setISBN(M[i + 1].getISBN());
+                        if (asc) {
+                            if (M[i].getISBN().compareToIgnoreCase(M[i + 1].getISBN()) > 0) {
+                                String aux = M[i].getISBN();
+                                M[i].setISBN(M[i + 1].getISBN());
 
-                            M[i + 1].setISBN(aux);
-                        } //fin if
+                                M[i + 1].setISBN(aux);
+                            } //fin if
+
+                        } else {
+                            if (M[i].getISBN().compareToIgnoreCase(M[i + 1].getISBN()) <= 0) {
+                                String aux = M[i].getISBN();
+                                M[i].setISBN(M[i + 1].getISBN());
+
+                                M[i + 1].setISBN(aux);
+                            } //fin if
+                        }
+
                         break;
 
                     case 1:
+                        if (asc) {
+                            if (M[i].getTitulo().compareToIgnoreCase(M[i + 1].getTitulo()) > 0) {
+                                String aux = M[i].getTitulo();
+                                M[i].setTitulo(M[i + 1].getTitulo());
 
-                        if (M[i].getTitulo().compareToIgnoreCase(M[i + 1].getTitulo())> 0) {
-                           String aux = M[i].getTitulo();
-                            M[i].setTitulo(M[i + 1].getTitulo());
+                                M[i + 1].setTitulo(aux);
+                            } //fin if
 
-                            M[i + 1].setTitulo(aux);
-                        } //fin if
-                        else if (M[i].getTitulo().compareToIgnoreCase(M[i + 1].getTitulo()) < 0) {
-                            String aux = M[i].getTitulo();
-                            M[i].setTitulo(M[i + 1].getTitulo());
+                        } else {
+                            if (M[i].getTitulo().compareToIgnoreCase(M[i + 1].getTitulo()) < 0) {
+                                String aux = M[i].getTitulo();
+                                M[i].setTitulo(M[i + 1].getTitulo());
 
-                            M[i + 1].setTitulo(aux);
-                        } //fin if
+                                M[i + 1].setTitulo(aux);
+                            } //fin if
+                        }
+
                         break;
-                            
-                            case 2:
 
-                        if (M[i].getAutor().compareToIgnoreCase(M[i + 1].getAutor())> 0) {
-                           String aux = M[i].getAutor();
-                            M[i].setAutor(M[i + 1].getAutor());
+                    case 2:
 
-                            M[i + 1].setAutor(aux);
-                        } //fin if
-                        else if (M[i].getAutor().compareToIgnoreCase(M[i + 1].getAutor()) < 0) {
-                            String aux = M[i].getAutor();
-                            M[i].setAutor(M[i + 1].getAutor());
+                        if (asc) {
+                            if (M[i].getAutor().compareToIgnoreCase(M[i + 1].getAutor()) > 0) {
+                                String aux = M[i].getAutor();
+                                M[i].setAutor(M[i + 1].getAutor());
 
-                            M[i + 1].setAutor(aux);
-                        } //fin if
+                                M[i + 1].setAutor(aux);
+                            } //fin if
+                        } else {
+                            if (M[i].getAutor().compareToIgnoreCase(M[i + 1].getAutor()) < 0) {
+                                String aux = M[i].getAutor();
+                                M[i].setAutor(M[i + 1].getAutor());
+
+                                M[i + 1].setAutor(aux);
+                            } //fin if
+                        }
+
                         break;
-                        case 3:
 
-                        if (M[i].getEd().compareToIgnoreCase(M[i + 1].getEd())> 0) {
-                           String aux = M[i].getEd();
-                            M[i].setEd(M[i + 1].getEd());
+                    case 3:
+                        if (asc) {
+                            if (M[i].getEd().compareToIgnoreCase(M[i + 1].getEd()) > 0) {
+                                String aux = M[i].getEd();
+                                M[i].setEd(M[i + 1].getEd());
 
-                            M[i + 1].setEd(aux);
-                        } //fin if
-                        else if (M[i].getEd().compareToIgnoreCase(M[i + 1].getEd()) < 0) {
-                            String aux = M[i].getEd();
-                            M[i].setEd(M[i + 1].getEd());
+                                M[i + 1].setEd(aux);
+                            } //fin if
+                        } else {
+                            if (M[i].getEd().compareToIgnoreCase(M[i + 1].getEd()) < 0) {
+                                String aux = M[i].getEd();
+                                M[i].setEd(M[i + 1].getEd());
 
-                            M[i + 1].setEd(aux);
-                        } //fin if
+                                M[i + 1].setEd(aux);
+                            } //fin if
+                        }
+
                         break;
-                       case 4:
 
-                        if (M[i].getPrecio() > M[i + 1].getPrecio()) {
-                            int aux = M[i].getPrecio();
-                            M[i].setPrecio(M[i + 1].getPrecio());
-                            M[i + 1].setPrecio(aux);
-                        } //segundo if
-                        else if (M[i].getPrecio() < M[i + 1].getPrecio()) {
-                            int aux = M[i].getPrecio();
-                            M[i].setPrecio(M[i + 1].getPrecio());
-                            M[i + 1].setPrecio(aux);
-                        } //segundo if
+                    case 4:
+                        if (asc) {
+                            if (M[i].getPrecio() > M[i + 1].getPrecio()) {
+                                int aux = M[i].getPrecio();
+                                M[i].setPrecio(M[i + 1].getPrecio());
+                                M[i + 1].setPrecio(aux);
+                            } //segundo if
+                        } else {
+                            if (M[i].getPrecio() < M[i + 1].getPrecio()) {
+                                int aux = M[i].getPrecio();
+                                M[i].setPrecio(M[i + 1].getPrecio());
+                                M[i + 1].setPrecio(aux);
+                            } //segundo if
+                        }
+
                         break;
                 }//switch
             }//segundo for
         }//primer for
     }//metodo burbuja alumno
-     public static void quicksortLibro(Libro[] A, int izq, boolean asc, int der, int c) {
+
+    public static void quicksortLibro(Libro[] A, int izq, boolean asc, int der, int c) {
         switch (c) {
             case 0://Nombre
                 String pivote;
@@ -217,8 +238,8 @@ public class Metodo {
                 }
                 break;
 
-                 case 1:
-                      aux="";
+            case 1:
+                aux = "";
                 pivote = A[izq].getTitulo();
                 i = izq;
                 j = der;
@@ -255,8 +276,8 @@ public class Metodo {
                     quicksortLibro(A, j + 1, asc, der, 0);
                 }
                 break;
-                  case 2:
-                      aux="";
+            case 2:
+                aux = "";
                 pivote = A[izq].getAutor();
                 i = izq;
                 j = der;
@@ -293,8 +314,8 @@ public class Metodo {
                     quicksortLibro(A, j + 1, asc, der, 0);
                 }
                 break;
-                   case 3:
-                      aux="";
+            case 3:
+                aux = "";
                 pivote = A[izq].getEd();
                 i = izq;
                 j = der;
@@ -370,7 +391,8 @@ public class Metodo {
                 break;
         }
     }//quicksort materia
-     public static void shellasc(Libro[] A, boolean asc, int c) {
+
+    public static void shellasc(Libro[] A, boolean asc, int c) {
         switch (c) {
             case 0:
                 int n = A.length;
@@ -382,6 +404,11 @@ public class Metodo {
                 while (cambios) {
                     cambios = false;
                     for (int i = 0; i < n - cc; i++) {
+                        if(asc){
+                            
+                        }else{
+                            
+                        }
                         if (asc && A[i].getISBN().compareToIgnoreCase(A[i + cc].getISBN()) > 0) {
                             String aux = A[i].getISBN();
                             A[i].setISBN(A[i + cc].getISBN());
@@ -402,8 +429,8 @@ public class Metodo {
                     }
                 }//while
                 break;
-                
-                case 1:
+
+            case 1:
                 int nn = A.length;
                 int ccc = nn / 2;
                 boolean cambios1 = true;
@@ -433,7 +460,7 @@ public class Metodo {
                     }
                 }//while
                 break;
-                   case 2:
+            case 2:
                 int nnnn = A.length;
                 int cccc = nnnn / 2;
                 boolean cambios11 = true;
@@ -463,7 +490,7 @@ public class Metodo {
                     }
                 }//while
                 break;
-                   case 3:
+            case 3:
                 int nnnnn = A.length;
                 int ccccc = nnnnn / 2;
                 boolean cambios111 = true;
@@ -522,55 +549,64 @@ public class Metodo {
                 break;
         }//switch
     }//metodo shell materia
-    
-     public static Libro[] radixSort(Libro L[], boolean asc, int c){
-      switch(c){
-          case 0:
-              showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
-              break;
-          case 1:
-              showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
-              break;
-      case 2:
-          showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
-              break;
-          case 3:
-              showMessageDialog(null,"NO SE PUEDE ORDENAR CON STRING");
-              break;
-      case 4:
-           int tam=L.length, mayor=L[0].getPrecio();
-      for(int i=1; i<tam; i++)
-          if(L[i].getPrecio()>mayor) mayor=L[i].getPrecio();          
-         int d=(mayor+"").length();
-      
-          ColaSimple M[]= new ColaSimple[10];
-          for(int i=0; i<10; i++)M[i]=new ColaSimple(tam);
-          
-          for(int dig=1; dig<=d; dig++)
-          {
-              for(int j=0;j<tam; j++){
-                  String num=L[j].getPrecio()+"";
-                  int inicio=num.length()-dig,fin=inicio+1,pos;
-                  if(inicio<0)pos=0;
-                  else
-                   pos=Integer.parseInt(num.substring(inicio, fin));
-                   M[pos].meter(L[j].getPrecio());
-                        }//for
-             if (asc){
-              int a=0;
-              for(int z=0; z<10;z++){
-                while(!M[z].vacia())
-                    L[a++].setPrecio(M[z].sacar());
-              } }
-             else {
-              int a=0;
-              for(int z=9; z>=0;z--){
-                while(!M[z].vacia())
-                    L[a++].setPrecio(M[z].sacar());
-                 }
-             }
-          }//for
-          }//switch
-         return L;
-     }//radix  
+
+    public static Libro[] radixSort(Libro L[], boolean asc, int c) {
+        switch (c) {
+            case 0:
+                showMessageDialog(null, "NO SE PUEDE ORDENAR CON STRING");
+                break;
+            case 1:
+                showMessageDialog(null, "NO SE PUEDE ORDENAR CON STRING");
+                break;
+            case 2:
+                showMessageDialog(null, "NO SE PUEDE ORDENAR CON STRING");
+                break;
+            case 3:
+                showMessageDialog(null, "NO SE PUEDE ORDENAR CON STRING");
+                break;
+            case 4:
+                int tam = L.length,
+                 mayor = L[0].getPrecio();
+                for (int i = 1; i < tam; i++) {
+                    if (L[i].getPrecio() > mayor) {
+                        mayor = L[i].getPrecio();
+                    }
+                }
+                int d = (mayor + "").length();
+
+                ColaSimple M[] = new ColaSimple[10];
+                for (int i = 0; i < 10; i++) {
+                    M[i] = new ColaSimple(tam);
+                }
+
+                for (int dig = 1; dig <= d; dig++) {
+                    for (int j = 0; j < tam; j++) {
+                        String num = L[j].getPrecio() + "";
+                        int inicio = num.length() - dig, fin = inicio + 1, pos;
+                        if (inicio < 0) {
+                            pos = 0;
+                        } else {
+                            pos = Integer.parseInt(num.substring(inicio, fin));
+                        }
+                        M[pos].meter(L[j].getPrecio());
+                    }//for
+                    if (asc) {
+                        int a = 0;
+                        for (int z = 0; z < 10; z++) {
+                            while (!M[z].vacia()) {
+                                L[a++].setPrecio(M[z].sacar());
+                            }
+                        }
+                    } else {
+                        int a = 0;
+                        for (int z = 9; z >= 0; z--) {
+                            while (!M[z].vacia()) {
+                                L[a++].setPrecio(M[z].sacar());
+                            }
+                        }
+                    }
+                }//for
+        }//switch
+        return L;
+    }//radix  
 }//clase

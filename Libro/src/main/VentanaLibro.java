@@ -465,9 +465,13 @@ public class VentanaLibro extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         //darle click al guardar
-        L[++tope] = new Libro(txtisbn.getText(), txtTitulo.getText(), txtAutor.getText(), txtEditorial.getText(), (Integer.parseInt(txtPrecio.getText())));
-        //BloquearCampos();
-        //limpicarcampos();
+        try{
+            L[++tope] = new Libro(txtisbn.getText(), txtTitulo.getText(), txtAutor.getText(), txtEditorial.getText(), (Integer.parseInt(txtPrecio.getText())));
+        
+        }catch(NumberFormatException e){
+            showMessageDialog(null, "Error: ingrese solo valores numericos enteros para el precio.");
+            txtPrecio.requestFocus();
+        }
         desBloquearCampos();
         Object O[] = new Object[5];
         O[0] = L[tope].getISBN();
@@ -512,13 +516,23 @@ public class VentanaLibro extends javax.swing.JFrame {
            L1[i]=new Libro(m.getValueAt(i,0).toString(),m.getValueAt(i,1).toString(),m.getValueAt(i,2).toString(),m.getValueAt(i,3).toString(),Integer.parseInt(m.getValueAt(i,4).toString()));
        }
        
-       if(L1.length>0)
-            Metodo.ordBurbujaAlmno(L1,true,tblLibro.getSelectedColumn());
+       if(L1.length>0){
+           
+           Metodo.ordBurbujaAlmno(L1, true, tblLibro.getSelectedColumn());
+           
+           int pos = binariaRecur(L1, txtvalue.getText(), 0, L1.length, cbmIndex.getSelectedIndex());
+           
+           if (pos != -1)
+               showMessageDialog(rootPane, "se encuentra en la posición " + pos++);
+           else 
+               showMessageDialog(rootPane, "no se encuentra ");
+           
+       }
+       else{
+           showMessageDialog(rootPane, "se encuentra en la posición 0");
+       }
         
-       int pos = binariaRecur(L1,txtvalue.getText(), 0, L1.length - 1);
-       if (pos != -1) {
-            showMessageDialog(rootPane, "se encuentra en la posición " + pos++);}
-       else { showMessageDialog(rootPane, "no se encuentra ");} 
+        
        
     }//GEN-LAST:event_btnbinariaActionPerformed
 
@@ -528,47 +542,54 @@ public class VentanaLibro extends javax.swing.JFrame {
 
     private void tblLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibroMouseClicked
         // Dar clic en cada columna para ordenar los datos
-            int f=tblLibro.getSelectedColumn();
-        L=new Libro [m.getRowCount()];
-        for(int i=0;i<m.getRowCount();i++){
-       L[i] = new Libro (m.getValueAt(i, 0).toString(),m.getValueAt(i,1).toString(),m.getValueAt(i, 2).toString(),
-                                 m.getValueAt(i, 3).toString(),Integer.parseInt(m.getValueAt(i, 4).toString()));}
-        boolean a=rbtnasc.isSelected();
-        if(rbtnburbuja.isSelected()){
-        Metodo.ordBurbujaAlmno(L, a,tblLibro.getSelectedColumn());
-        }
-        if(rbtquick.isSelected()){
-        Metodo.quicksortLibro(L,0,a,L.length-1,tblLibro.getSelectedColumn());
-        }
-        if(rbtshell.isSelected()){
-        Metodo.shellasc(L, a,tblLibro.getSelectedColumn());
-        }
-        if(rbnradix.isSelected()){
-        Metodo.radixSort(L, a,tblLibro.getSelectedColumn());
         
+        if(!rbtnasc.isSelected() && !rbtndesc.isSelected())
+            rbtnasc.setSelected(true);
+        
+        if(!rbtnburbuja.isSelected() && !rbtshell.isSelected() && !rbtquick.isSelected() && !rbnradix.isSelected())
+            rbtquick.setSelected(true);
+        
+        int f = tblLibro.getSelectedColumn();
+        L = new Libro[m.getRowCount()];
+        for (int i = 0; i < m.getRowCount(); i++) {
+            L[i] = new Libro(m.getValueAt(i, 0).toString(), m.getValueAt(i, 1).toString(), m.getValueAt(i, 2).toString(),
+                    m.getValueAt(i, 3).toString(), Integer.parseInt(m.getValueAt(i, 4).toString()));
         }
-       // if(rbradix.isSelected()){
-       // Examen_Unid5.radixMateria(M, a,btnmateria.getSelectedColumn());
-       // }
-         for(int i=0;i<L.length;i++){
-            switch(f){
+        
+        boolean a = rbtnasc.isSelected();
+        if (rbtnburbuja.isSelected()) {
+            Metodo.ordBurbujaAlmno(L, a, tblLibro.getSelectedColumn());
+        }
+        if (rbtquick.isSelected()) {
+            Metodo.quicksortLibro(L, 0, a, L.length - 1, tblLibro.getSelectedColumn());
+        }
+        if (rbtshell.isSelected()) {
+            Metodo.shellasc(L, a, tblLibro.getSelectedColumn());
+        }
+        if (rbnradix.isSelected()) {
+            Metodo.radixSort(L, a, tblLibro.getSelectedColumn());
+
+        }
+        
+        for (int i = 0; i < L.length; i++) {
+            switch (f) {
                 case 0:
-                     m.setValueAt(L[i].getISBN(), i, f);
+                    m.setValueAt(L[i].getISBN(), i, f);
                     break;
                 case 1:
-                     m.setValueAt(L[i].getTitulo(), i, f);
+                    m.setValueAt(L[i].getTitulo(), i, f);
                     break;
-                    case 2:
-                     m.setValueAt(L[i].getAutor(), i, f);
+                case 2:
+                    m.setValueAt(L[i].getAutor(), i, f);
                     break;
-                    case 3:
-                     m.setValueAt(L[i].getEd(), i, f);
+                case 3:
+                    m.setValueAt(L[i].getEd(), i, f);
                     break;
-                    case 4:
-                     m.setValueAt(L[i].getPrecio(), i, f);
+                case 4:
+                    m.setValueAt(L[i].getPrecio(), i, f);
                     break;
             }
-         }
+        }
     }//GEN-LAST:event_tblLibroMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -622,49 +643,73 @@ public class VentanaLibro extends javax.swing.JFrame {
         btnbuscar.setEnabled(true);
     }
 
-    public Libro busquedaSec(Libro L[], int index, String value) {
-        for (int i = 0; i < tope; i++) {
-            switch (index) {
-                case 0:
-                    if (L[i].getISBN().equals(value)) {
-                        return L[i];
-                    }
-                    break;
-                case 1:
-                    if (L[i].getTitulo().equals(value)) {
-                        return L[i];
-                    }
-                    break;
-                case 2:
-                    if (L[i].getAutor().equals(value)) {
-                        return L[i];
-                    }
-                    break;
-                case 3:
-                    if (L[i].getEd().equals(value)) {
-                        return L[i];
-                    }
-                    break;
-                case 4:
-                    if ((L[i].getPrecio() + "").equals(value)) {
-                        return L[i];
-                    }
-                    break;
-            }//switch
-        }
-        showMessageDialog(null,"NO SE ENCONTRO EL DATO");
-        return null;
-    }
-     public static int binariaRecur(Libro[] L, String valor, int inf, int sup) {
-        int mitad = (inf + sup) / 2;
-        if ((inf >= sup) && (L[inf].getISBN() != valor)) {
-            return -1;
-        } else if (L[mitad].getISBN().equals(valor)) {
-            return mitad;
-        } else if (valor.compareToIgnoreCase(L[mitad].getISBN())>0) {
-            return binariaRecur(L, valor, mitad + 1, sup);
-        }
-        return binariaRecur(L, valor, inf, mitad - 1);
+    
+     public static int binariaRecur(Libro[] L, String valor, int inf, int sup, int opt) {
+         switch(opt){
+             case 1:
+                 int mitad = (inf + sup) / 2;
+                 if ((inf >= sup) && !L[inf].getISBN().equals(valor)) {
+                     return -1;
+                 } else if (L[mitad].getISBN().equals(valor)) {
+                     return mitad;
+                 } else if (valor.compareToIgnoreCase(L[mitad].getISBN()) > 0) {
+                     return binariaRecur(L, valor, mitad + 1, sup, opt);
+                 }
+                 return binariaRecur(L, valor, inf, mitad - 1, opt);
+                 
+                 
+             case 2:
+                 mitad = (inf + sup) / 2;
+                 if ((inf >= sup) && !L[inf].getAutor().equals(valor)) {
+                     return -1;
+                 } else if (L[mitad].getAutor().equals(valor)) {
+                     return mitad;
+                 } else if (valor.compareToIgnoreCase(L[mitad].getAutor()) > 0) {
+                     return binariaRecur(L, valor, mitad + 1, sup, opt);
+                 }
+                 return binariaRecur(L, valor, inf, mitad - 1, opt);
+                 
+             case 3:
+                 mitad = (inf + sup) / 2;
+                 if ((inf >= sup) && !L[inf].getTitulo().equals(valor)) {
+                     return -1;
+                 } else if (L[mitad].getTitulo().equals(valor)) {
+                     return mitad;
+                 } else if (valor.compareToIgnoreCase(L[mitad].getTitulo()) > 0) {
+                     return binariaRecur(L, valor, mitad + 1, sup, opt);
+                 }
+                 return binariaRecur(L, valor, inf, mitad - 1, opt);
+                 
+                 
+                 
+             case 4:
+                 mitad = (inf + sup) / 2;
+                 if ((inf >= sup) && !L[inf].getEd().equals(valor)) {
+                     return -1;
+                 } else if (L[mitad].getEd().equals(valor)) {
+                     return mitad;
+                 } else if (valor.compareToIgnoreCase(L[mitad].getEd()) > 0) {
+                     return binariaRecur(L, valor, mitad + 1, sup, opt);
+                 }
+                 return binariaRecur(L, valor, inf, mitad - 1, opt);
+                 
+             case 5:
+                 mitad = (inf + sup) / 2;
+                 if ((inf >= sup) && L[inf].getPrecio()!=Integer.parseInt(valor)) {
+                     return -1;
+                 } else if (L[mitad].getPrecio()==Integer.parseInt(valor)) {
+                     return mitad;
+                 } else if (Integer.parseInt(valor)>L[mitad].getPrecio()) {
+                     return binariaRecur(L, valor, mitad + 1, sup, opt);
+                 }
+                 return binariaRecur(L, valor, inf, mitad - 1, opt);
+                 
+             default:
+                 break;
+         }
+         
+         return -1;         
+        
     } //binaria recursiva
 
     /**
