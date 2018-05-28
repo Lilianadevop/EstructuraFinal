@@ -493,12 +493,13 @@ public class Metodo {
                         } else {
                             if (!asc && A[i].getEd().compareToIgnoreCase(A[i + ccccc].getEd()) < 0) {
                                 String aux = A[i].getEd();
-                                A[i].setAutor(A[i + ccccc].getEd());
+                                A[i].setEd(A[i + ccccc].getEd());
                                 A[i + ccccc].setEd(aux);
                                 cambios111 = true;
                             }
 
                         }
+                        
                     }
                     if (ccccc != 1) {
                         ccccc = ccccc / 2;

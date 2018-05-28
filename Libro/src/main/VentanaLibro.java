@@ -460,12 +460,6 @@ public class VentanaLibro extends javax.swing.JFrame {
         }else
             if(!Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount(),cbmIndex.getSelectedIndex()))
                 showMessageDialog(null, "No se encuentra");
-        
-            
-            
-            
-            
-        
             
             
     }//GEN-LAST:event_btnbuscarActionPerformed
@@ -527,7 +521,7 @@ public class VentanaLibro extends javax.swing.JFrame {
 
                 Metodo.ordBurbujaAlmno(L1, true, tblLibro.getSelectedColumn());
 
-                int pos = binariaRecur(L1, txtvalue.getText(), 0, L1.length, cbmIndex.getSelectedIndex());
+                int pos = binariaRecur(L1, txtvalue.getText(), 0, L1.length-1, cbmIndex.getSelectedIndex());
 
                 if (pos != -1) {
                     showMessageDialog(rootPane, "se encuentra en la posición " + pos++);
