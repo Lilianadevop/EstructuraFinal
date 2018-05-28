@@ -258,6 +258,15 @@ public static void mostrararreglo(int F[]) {
         showMessageDialog(null, "Ordenamiento de mezcla directa es: \n " + cad);
 
     }
+public static void mostrararregloNatural(int F[]) {
+        String cad = "";
+        for (int k = 0; k < F.length; k++) {
+            cad = cad + F[k] + ",";
+            // System.out.print("[" + F[k] + "]");
+        }
+        showMessageDialog(null, "Ordenamiento de mezcla natural es: \n " + cad);
+
+    }
 
     //public static void main(String[] args) {
     //  OrdenamientoExterno or = new OrdenamientoExterno();
@@ -275,15 +284,16 @@ public static void mostrararreglo(int F[]) {
        // mostrararreglo(A);
         //********
         
-        int A[] = {55,4,43,44,2,10,45};
+        int A[] = {22,23,30,2,5,10,8,9,13};
         String cad="";
         for(int i:A){
             cad+= "[ " + i + "]";
         }
         showMessageDialog(null,"El arreglo a ordenar es:" + cad);
-       
-            showMessageDialog(null,"Arreglo ordenado mezcla natural " + or.mezclaNatural(A));
-            or.mezclaNatural(A);
+       System.out.print(("El arreglo ordenado por mezcla natural es: "));
+       or.mezclaNatural(A);
+       mostrararregloNatural(A);
+            
             
     }
 
