@@ -23,9 +23,6 @@ public class Metodo {
                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
                         return buscar = true;
                     }//if
-                    else {
-                        showMessageDialog(null, "No se encontro  su busqueda");
-                    }
 
                 }//for
 
@@ -38,9 +35,6 @@ public class Metodo {
                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
                         return buscar = true;
                     }//if
-                    else {
-                        showMessageDialog(null, "No se encontro  su busqueda");
-                    }
                 }//for
                 break;
             case 3:
@@ -50,9 +44,6 @@ public class Metodo {
                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
                         return buscar = true;
                     }//if
-                    else {
-                        showMessageDialog(null, "No se encontro  su busqueda");
-                    }
                 }//for
                 break;
             case 4:
@@ -62,9 +53,6 @@ public class Metodo {
                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
                         return buscar = true;
                     }//if
-                    else {
-                        showMessageDialog(null, "No se encontro  su busqueda");
-                    }
                 }//for
                 break;
             case 5:
@@ -74,9 +62,6 @@ public class Metodo {
                         showMessageDialog(null, " Se ha encontrado" + "\n" + L[i].toString());
                         return buscar = true;
                     }//if
-                    else {
-                        showMessageDialog(null, "No se encontro  su busqueda");
-                    }
                 }//for
                 break;
 

@@ -1,6 +1,7 @@
 package main;
 
 
+import java.awt.HeadlessException;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -453,12 +454,18 @@ public class VentanaLibro extends javax.swing.JFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         //boton de buscar en general por todos los campos
-        if (!txtvalue.getText().equals("") && cbmIndex.getSelectedIndex()!=0 )
-            Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount(),cbmIndex.getSelectedIndex());
-        else{
+        if(txtvalue.getText().equals("") || cbmIndex.getSelectedIndex()==0){
             showMessageDialog(null, "Por favor ingrese el dato y criterio a buscar");
             txtvalue.requestFocus();
-        }
+        }else
+            if(!Metodo.bSec(L, txtvalue.getText(), tblLibro.getRowCount(),cbmIndex.getSelectedIndex()))
+                showMessageDialog(null, "No se encuentra");
+        
+            
+            
+            
+            
+        
             
             
     }//GEN-LAST:event_btnbuscarActionPerformed
@@ -508,29 +515,33 @@ public class VentanaLibro extends javax.swing.JFrame {
     private void btnbinariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbinariaActionPerformed
         // Busqueda binaria
         
-        
-       Libro[] L1=new Libro[m.getRowCount()];
-       //showMessageDialog(null, m.getRowCount());
-       for(int i=0;i<m.getRowCount();i++){
-           
-           L1[i]=new Libro(m.getValueAt(i,0).toString(),m.getValueAt(i,1).toString(),m.getValueAt(i,2).toString(),m.getValueAt(i,3).toString(),Integer.parseInt(m.getValueAt(i,4).toString()));
-       }
+        try{
+            Libro[] L1 = new Libro[m.getRowCount()];
+            //showMessageDialog(null, m.getRowCount());
+            for (int i = 0; i < m.getRowCount(); i++) {
+
+                L1[i] = new Libro(m.getValueAt(i, 0).toString(), m.getValueAt(i, 1).toString(), m.getValueAt(i, 2).toString(), m.getValueAt(i, 3).toString(), Integer.parseInt(m.getValueAt(i, 4).toString()));
+            }
+
+            if (L1.length > 0) {
+
+                Metodo.ordBurbujaAlmno(L1, true, tblLibro.getSelectedColumn());
+
+                int pos = binariaRecur(L1, txtvalue.getText(), 0, L1.length, cbmIndex.getSelectedIndex());
+
+                if (pos != -1) {
+                    showMessageDialog(rootPane, "se encuentra en la posición " + pos++);
+                } else {
+                    showMessageDialog(rootPane, "no se encuentra ");
+                }
+
+            } else {
+                showMessageDialog(rootPane, "se encuentra en la posición 0");
+            }
+        }catch(HeadlessException | NumberFormatException e){
+            showMessageDialog(rootPane, "no se encuentra");
+        }
        
-       if(L1.length>0){
-           
-           Metodo.ordBurbujaAlmno(L1, true, tblLibro.getSelectedColumn());
-           
-           int pos = binariaRecur(L1, txtvalue.getText(), 0, L1.length, cbmIndex.getSelectedIndex());
-           
-           if (pos != -1)
-               showMessageDialog(rootPane, "se encuentra en la posición " + pos++);
-           else 
-               showMessageDialog(rootPane, "no se encuentra ");
-           
-       }
-       else{
-           showMessageDialog(rootPane, "se encuentra en la posición 0");
-       }
         
         
        
