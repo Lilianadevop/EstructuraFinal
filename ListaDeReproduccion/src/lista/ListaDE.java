@@ -23,26 +23,34 @@ public class ListaDE {
             inicio=fin=new NodoDE(d);
             inicio.setSig(fin);
             fin.setAnt(inicio);
+        }else if(fin==inicio){
+            inicio.setSig(new NodoDE(d));
+            fin=inicio.getSig();
+            fin.setSig(inicio);
+            fin.setAnt(inicio);
+            inicio.setAnt(fin);
         }
         else{
             fin.setSig(new NodoDE(d));
             fin.getSig().setAnt(fin);
             fin=fin.getSig();
+            fin.setSig(inicio);
+            inicio.setAnt(fin);
         }
     }
     
     public boolean estaVacia(){
-        return inicio==null;
+        return inicio==null && fin==null;
     }
     
     public NodoDE existe(Cancion d){
-        if(inicio.getCancion()==d)
-            return inicio;
-        else if(fin.getCancion()==d)
+        //if(inicio.getCancion()==d)
+            //return inicio;
+        if(fin.getCancion().equals(d))
                 return fin;
         else
-            for(NodoDE i=inicio; i!=null;i=i.getSig())
-                if(i.getCancion()==d)
+            for(NodoDE i=inicio; i!=fin;i=i.getSig())
+                if(i.getCancion().equals(d))
                     return i;
         
         
@@ -85,15 +93,12 @@ public class ListaDE {
     
     public Cancion siguiente(Cancion c){
         if(!estaVacia()){
-            if(inicio.getCancion()==c)
-                return c;
-            else if(fin.getCancion()==c)
-                return c;
-            else{
-                NodoDE temp = existe(c);
-                if(temp!=null)
+            NodoDE temp = existe(c);
+            if (temp != null) 
+                if(temp.getSig()!=null)
                     return temp.getSig().getCancion();
-            }
+                else
+                    return null;
         }
         return null;
     }
@@ -102,7 +107,11 @@ public class ListaDE {
         if(!estaVacia()){
             NodoDE temp = existe(c);
             if(temp!=null)
-                return temp.getAnt().getCancion();
+                if(temp.getAnt()!=null)
+                    return temp.getAnt().getCancion();
+                else
+                    return null;
+                    
         }
         return null;
     }
@@ -145,6 +154,7 @@ public class ListaDE {
         
         return tam;
     }
+    
     
     
     

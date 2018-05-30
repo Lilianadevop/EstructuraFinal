@@ -1,11 +1,6 @@
 package main;
 
-import java.awt.Image;
 import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javazoom.jlgui.basicplayer.BasicPlayer;
@@ -13,6 +8,9 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import lista.Cancion;
 import lista.ListaDE;
@@ -26,7 +24,7 @@ import lista.NodoDE;
 
 /**
  *
- * @author Liliana Gonzalez
+ * @author TEAM
  */
 public class Interfaz extends javax.swing.JFrame {
     private boolean reproduciendo;
@@ -37,11 +35,30 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        jButton3.setVisible(false);
+        jButton4.setVisible(false);
         reproduciendo=false;
         btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Play.png")));
         player = new BasicPlayer();
         lista=new ListaDE();
         dtm=(DefaultTableModel)tblLista.getModel();
+        ing=0;
+        cont=0;
+        
+        sVolumen.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double vol = sVolumen.getValue();
+                vol = (vol / 100);
+                try {
+                    player.setGain(vol);
+                } catch (BasicPlayerException ex) {
+                    Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
     }
 
     /**
@@ -68,7 +85,8 @@ public class Interfaz extends javax.swing.JFrame {
         lblCancionActual = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        sVolumen = new javax.swing.JSlider();
         pLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLista = new javax.swing.JTable();
@@ -145,6 +163,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Repeat.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Aleatorio.png"))); // NOI18N
@@ -216,13 +239,20 @@ public class Interfaz extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Left.png"))); // NOI18N
-
-        jButton6.setText("Agregar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        sVolumen.setValue(100);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -232,16 +262,20 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addComponent(btnAgregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(sVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -329,79 +363,90 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
-        // TODO add your handling code here:
+        // Reproducir
         
         if(reproduciendo)
-            detener();
+            pausar();
         else
             reproducir();
     }//GEN-LAST:event_btnPlayActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // Agregar musica
         
         try {
             cont=0;
             JFileChooser filePick = new JFileChooser();
-            int returnVal = filePick.showOpenDialog(this);
+            filePick.setFileFilter(new FileNameExtensionFilter("mp3 & wav Images", "wav", "mp3"));
 
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
+            if (filePick.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 f = filePick.getSelectedFile();
                 lista.insertar(new Cancion(f));
                 dtm.setRowCount(dtm.getRowCount()+1);
                 if(ing<=0){
-                    actual=new Cancion(f);
+                    actual=lista.getFin();
                     lblCancionActual.setText(f.getName());
                     dtm.setValueAt(actual.getNombre(), lista.getTam(), 0);
                 }
                 dtm.setValueAt(f.getName(), lista.getTam(), 0);
                 
-                ing++;               
-                
-                //actualizarTbl();
+                ing++;
             }
 
         } catch (Exception e) {
             showMessageDialog(null, "Error al leer el archivo.");
         }
         
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // Siguiente
-        if(lista.siguiente(actual)!=null){
+        Cancion temp=lista.siguiente(actual);
+        if(temp!=null){
             cont=0;
-            actual=lista.siguiente(actual);
+            actual=temp;
             reproducir();
-        }
+        }else
+            showMessageDialog(null, "Lista vacia");
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // Anterior
-        if(lista.anterior(actual)!=null){
+        Cancion temp=lista.anterior(actual);
+        if(temp!=null){
             cont=0;
-            actual=lista.anterior(actual);
+            actual=temp;
             reproducir();
-        }
+        }else
+            showMessageDialog(null, "Lista vacia");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // Ver lista
-        //if(tblLista.isVisible())
             pLista.setVisible(!pLista.isVisible());
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Salir
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Detener
+        detener();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void actualizarTbl(){
         dtm.setRowCount(0);
@@ -419,7 +464,7 @@ public class Interfaz extends javax.swing.JFrame {
         
     }
     
-    private void detener(){
+    private void pausar(){
         reproduciendo=false;
         btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Play.png")));
         try {
@@ -429,13 +474,24 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }
     
+    private void detener(){
+        reproduciendo=false;
+        btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Play.png")));
+        try {
+            player.stop();
+        } catch (BasicPlayerException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cont=0;
+    }
+    
     private void reproducir(){
         if(!lista.estaVacia()){
             reproduciendo = true;
             btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Pause.png")));
             if (cont <= 0) {
                 try {
-                    //player.open(actual.getArchivo());
+                    lblCancionActual.setText(actual.getNombre());
                     player.open(actual.getArchivo());
                     player.play();
                 } catch (BasicPlayerException e) {
@@ -450,6 +506,22 @@ public class Interfaz extends javax.swing.JFrame {
             }
             cont++;
         }
+        
+    }
+    
+    private void reproducir(Cancion c){
+            reproduciendo = true;
+            btnPlay.setIcon(new ImageIcon(Class.class.getResource("/Iconos/Pause.png")));
+                try {
+                    //player.open(actual.getArchivo());
+                    player.open(c.getArchivo());
+                    player.play();
+                } catch (BasicPlayerException e) {
+                    //e.printStackTrace();
+                }
+                
+            cont++;
+        
         
     }
     
@@ -495,15 +567,14 @@ public class Interfaz extends javax.swing.JFrame {
     private int cont, ing;
     private BasicPlayer player;
     private File f;
-    private File[] files;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnPlay;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -515,6 +586,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado;
     private javax.swing.JPanel pImg;
     private javax.swing.JPanel pLista;
+    private javax.swing.JSlider sVolumen;
     private javax.swing.JTable tblLista;
     // End of variables declaration//GEN-END:variables
 }
