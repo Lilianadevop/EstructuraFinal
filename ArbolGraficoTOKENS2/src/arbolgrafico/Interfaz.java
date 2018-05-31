@@ -1,6 +1,7 @@
 
 package arbolgrafico;
 
+import grafos.Grafo;
 import java.awt.BorderLayout;
 import java.awt.Rectangle;
 import javax.swing.JInternalFrame;
@@ -43,7 +44,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         botonInsertar.setBackground(new java.awt.Color(255, 255, 255));
         botonInsertar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botonInsertar.setText("Insertar");
+        botonInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Añadir2.png"))); // NOI18N
         botonInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonInsertarActionPerformed(evt);
@@ -56,8 +57,8 @@ public class Interfaz extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(340, 340, 340)
-                .addComponent(botonInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addComponent(botonInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(394, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,17 +132,24 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
-        try {
-          String dato = JOptionPane.showInputDialog("Digite la expresion algebraica:");
-            if (insertar(dato)) {
-                JOptionPane.showMessageDialog(null, "La expresion fue insertada correctamente", " ...", 1);
-                
-                repintar();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo insertar el dato", "Intenta de nuevo...", 0);
+        String dato = JOptionPane.showInputDialog("Digite la expresion algebraica:");
+        
+        if(Grafo.esoperacion(dato)){
+            try {
 
-        }
+                if (insertar(dato)) {
+                    JOptionPane.showMessageDialog(null, "La expresion fue insertada correctamente", " ...", 1);
+                    repintar();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se pudo insertar el dato", "Intenta de nuevo...", 0);
+
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "La expresion no es valida", "Intenta de nuevo...", 0);
+        
+        
+        
     }//GEN-LAST:event_botonInsertarActionPerformed
 
     
