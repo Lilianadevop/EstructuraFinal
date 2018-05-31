@@ -5,6 +5,10 @@
  */
 package main;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Liliana Gonzalez
@@ -16,6 +20,8 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        dtm = (DefaultTableModel) tblGeneral.getModel();
+        
     }
 
     /**
@@ -34,14 +40,14 @@ public class Interfaz extends javax.swing.JFrame {
         tblGeneral = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         txtTam = new javax.swing.JTextField();
-        btnGeneralNew = new javax.swing.JButton();
-        btnGeneralEnqueuePush = new javax.swing.JButton();
-        btnGeneralDequeuePop = new javax.swing.JButton();
-        txtGeneralValue = new javax.swing.JTextField();
+        btnN = new javax.swing.JButton();
+        btnM = new javax.swing.JButton();
+        btnS = new javax.swing.JButton();
+        txtD = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 102, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -67,6 +73,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tblGeneral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblGeneral.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tblGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -85,6 +92,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tblGeneral);
 
+        jLabel11.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 102, 0));
         jLabel11.setText("Tamaño");
 
         txtTam.addActionListener(new java.awt.event.ActionListener() {
@@ -93,27 +102,27 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        btnGeneralNew.setBackground(new java.awt.Color(255, 255, 255));
-        btnGeneralNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
-        btnGeneralNew.addActionListener(new java.awt.event.ActionListener() {
+        btnN.setBackground(new java.awt.Color(255, 255, 255));
+        btnN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
+        btnN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeneralNewActionPerformed(evt);
+                btnNActionPerformed(evt);
             }
         });
 
-        btnGeneralEnqueuePush.setBackground(new java.awt.Color(255, 255, 255));
-        btnGeneralEnqueuePush.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/meter.png"))); // NOI18N
-        btnGeneralEnqueuePush.addActionListener(new java.awt.event.ActionListener() {
+        btnM.setBackground(new java.awt.Color(255, 255, 255));
+        btnM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/meter.png"))); // NOI18N
+        btnM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeneralEnqueuePushActionPerformed(evt);
+                btnMActionPerformed(evt);
             }
         });
 
-        btnGeneralDequeuePop.setBackground(new java.awt.Color(255, 255, 255));
-        btnGeneralDequeuePop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/sacar.png"))); // NOI18N
-        btnGeneralDequeuePop.addActionListener(new java.awt.event.ActionListener() {
+        btnS.setBackground(new java.awt.Color(255, 255, 255));
+        btnS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/sacar.png"))); // NOI18N
+        btnS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeneralDequeuePopActionPerformed(evt);
+                btnSActionPerformed(evt);
             }
         });
 
@@ -130,13 +139,13 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
                         .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtGeneralValue, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGeneralEnqueuePush)
-                    .addComponent(btnGeneralNew, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGeneralDequeuePop))
-                .addContainerGap(87, Short.MAX_VALUE))
+                    .addComponent(btnM)
+                    .addComponent(btnN, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnS))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,13 +159,13 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
-                            .addComponent(btnGeneralNew))
+                            .addComponent(btnN))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtGeneralValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGeneralEnqueuePush))
+                            .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnM))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGeneralDequeuePop)))
+                        .addComponent(btnS)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -185,25 +194,84 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTamActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtTamActionPerformed
 
-    private void btnGeneralNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralNewActionPerformed
-        // General
-       
-    }//GEN-LAST:event_btnGeneralNewActionPerformed
+    private void btnNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNActionPerformed
+     // General
+        btnM.setEnabled(true);
+        nuevaPila();
+        txtTam.setText("");
+    }//GEN-LAST:event_btnNActionPerformed
 
-    private void btnGeneralEnqueuePushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralEnqueuePushActionPerformed
-        // Push/Enqueue
-        
+    private void nuevaPila(){
+        try {
+            pila = new Pila(Integer.parseInt(txtTam.getText()));
+            llenarTabla();
+        } catch (NumberFormatException e) {
+            txtTam.setText("0");
+            txtTam.requestFocus();
+        }
+    }
+    
+    
+    
+    private void btnMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMActionPerformed
+           meter();
+    }//GEN-LAST:event_btnMActionPerformed
 
-    }//GEN-LAST:event_btnGeneralEnqueuePushActionPerformed
+    
+    private void meter(){
+        btnS.setEnabled(true);
+        try {
+            pila.meter(txtD.getText());
+        } catch (IllegalStateException e) {
+            showMessageDialog(this, e.getMessage());
+            txtD.setText("");
+            btnM.setEnabled(false);
+        }
+        llenarTabla();
+        txtD.setText("");
+    }
+    
+    private void btnSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSActionPerformed
+                sacar();
+    }//GEN-LAST:event_btnSActionPerformed
 
-    private void btnGeneralDequeuePopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralDequeuePopActionPerformed
-        // Pop/Dequeue
-       
-    }//GEN-LAST:event_btnGeneralDequeuePopActionPerformed
-
+    private void sacar(){
+        btnM.setEnabled(true);
+        try {
+            pila.sacar();
+        } catch (IllegalStateException e) {
+            showMessageDialog(this, e.getMessage());
+            btnS.setEnabled(false);
+        }
+        llenarTabla();
+    }
+    
+   
+    public void llenarTabla() {
+        borrarTbl(tblGeneral, dtm);//tblStack changed to tblGeneral
+        for (int i = 0; i < pila.obtenerArreglo().length; i++) {
+            Object stackObject = "";
+            String indexSimbol = "";
+            if (i == pila.getTope()) indexSimbol = "tope";
+            if (i < pila.getTope()) stackObject = pila.getPila()[i];
+            Object[] rowData = {indexSimbol, pila.obtenerArreglo()[i], stackObject};
+            dtm.addRow(rowData);
+        }
+    }
+    
+    
+    
+    public void borrarTbl(JTable table, DefaultTableModel model) {
+       for (int i = table.getRowCount()-1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -238,18 +306,20 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    private Pila pila;
+    private DefaultTableModel dtm;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGeneralDequeuePop;
-    private javax.swing.JButton btnGeneralEnqueuePush;
-    private javax.swing.JButton btnGeneralNew;
+    private javax.swing.JButton btnM;
+    private javax.swing.JButton btnN;
+    private javax.swing.JButton btnS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable tblGeneral;
-    private javax.swing.JTextField txtGeneralValue;
+    private javax.swing.JTextField txtD;
     private javax.swing.JTextField txtTam;
     // End of variables declaration//GEN-END:variables
 }
