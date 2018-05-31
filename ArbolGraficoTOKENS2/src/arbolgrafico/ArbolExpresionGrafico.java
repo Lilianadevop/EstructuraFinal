@@ -27,6 +27,7 @@ public class ArbolExpresionGrafico extends JPanel
      * Constructor de la clase ArbolExpresionGrafico.
      * El constructor permite inicializar los atributos de la clase ArbolExpresionGrafico
      * y llama al método repaint(), que es el encargado de pintar el Arbol.
+     * @param miArbol
      * @param miExpresion: dato de tipo ArbolExpresion que contiene el Arbol a
      * dibujar.
      */
@@ -46,7 +47,7 @@ public class ArbolExpresionGrafico extends JPanel
     private void calcularPosiciones(){
          posicionNodos.clear();
          subtreeSizes.clear();
-         Nodo1 root = this.miArbol.getRaiz();
+         Nodo root = this.miArbol.getRaiz();
          if (root != null) 
          {
              calcularTamañoSubarbol(root);
@@ -55,7 +56,7 @@ public class ArbolExpresionGrafico extends JPanel
     }
     
     
-     private Dimension calcularTamañoSubarbol(Nodo1 n) 
+     private Dimension calcularTamañoSubarbol(Nodo n) 
     {
           if (n == null) 
               return new Dimension(0,0);
@@ -73,7 +74,7 @@ public class ArbolExpresionGrafico extends JPanel
     }
     
    
-     private void calcularPosicion(Nodo1 n, int left, int right, int top) 
+     private void calcularPosicion(Nodo n, int left, int right, int top) 
     {
       if (n == null) 
           return;
@@ -102,7 +103,7 @@ public class ArbolExpresionGrafico extends JPanel
     
     
    
-private void dibujarArbol(Graphics2D g, Nodo1 n, int puntox, int puntoy, int yoffs) 
+private void dibujarArbol(Graphics2D g, Nodo n, int puntox, int puntoy, int yoffs) 
     {
      if (n == null) 
          return;
@@ -121,6 +122,7 @@ private void dibujarArbol(Graphics2D g, Nodo1 n, int puntox, int puntoy, int yof
    }
  
 
+    @Override
    public void paint(Graphics g) 
    {
          super.paint(g);
